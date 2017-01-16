@@ -1,8 +1,7 @@
 # Jsonwhois
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/jsonwhois`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Interact with the [JsonWhois](https://jsonwhois.com/) API for retrieving WHOIS
+data on domains.
 
 ## Installation
 
@@ -22,7 +21,43 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Simply require the service, configure your key, then start looking up domains.
+
+```ruby
+require 'jsonwhois'
+
+Jsonwhois.configure do |config|
+  config.token = ENV['JSONWHOIS_TOKEN']
+  # specify your own faraday connection (except for host)
+  # config.connection do |conn|
+  # ...
+  # end
+end
+
+whois = Jsonwhois::Client.new
+whois.lookup("google.com")
+#=> Hash
+```
+
+### URI Handling
+
+Rather than force you to remember to take off sub-domains or URI schemes, the
+`lookup` command can handle that for you.
+
+```ruby
+# ✓ returns JsonWhois API results for 'ofdomain.com'
+whois.lookup("subdomain.ofdomain.com")
+
+# ✓ returns JsonWhois API results for 'google.com'
+whois.lookup("http://google.com")
+
+# ✓ returns JsonWhois API results for 'bar.com'
+whois.lookup("mailto:foo@bar.com")
+
+# ✗ produces ArgumentError because it was neither a URI nor a parsable domain
+whois.lookup("foo@bar.com')
+#=> raises ArgumentError
+```
 
 ## Development
 
