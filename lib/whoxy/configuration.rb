@@ -1,19 +1,19 @@
-require 'jsonwhois/faraday_middleware'
+require 'whoxy/faraday_middleware'
 
-module Jsonwhois
+module Whoxy
   class Configuration
-    attr_accessor :token, :debug
+    attr_accessor :key, :debug
 
     def connection(&block)
       @connection ||= if block_given?
-                        Faraday.new(jsonwhois_host, &block)
+                        Faraday.new(whoxy_host, &block)
                       else
                         default_connection
                       end
     end
 
     def default_connection
-      @connection = Faraday.new(jsonwhois_host) do |conn|
+      @connection = Faraday.new(whoxy_host) do |conn|
         conn.request :url_encoded
 
         conn.request :retry, max: 10, interval: 0.05,
@@ -22,7 +22,7 @@ module Jsonwhois
                       ::Faraday::Error::TimeoutError,
                       ::Faraday::ConnectionFailed]
 
-        conn.response :jsonwhois, content_type: /\bjson$/
+        conn.response :whoxy, content_type: /\bjson$/
         conn.response :logger if debug
 
         conn.adapter Faraday.default_adapter
@@ -31,8 +31,8 @@ module Jsonwhois
 
     private
 
-    def jsonwhois_host
-      { url: "https://jsonwhois.com" }
+    def whoxy_host
+      { url: "https://api.whoxy.com" }
     end
   end
 end

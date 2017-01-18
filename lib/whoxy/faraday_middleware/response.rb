@@ -1,6 +1,6 @@
 require 'faraday_middleware'
 
-module Jsonwhois
+module Whoxy
   module FaradayMiddleware
     class Response < ::FaradayMiddleware::ParseJson
       define_parser do |body|

@@ -1,15 +1,15 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'jsonwhois/version'
+require 'whoxy/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "jsonwhois"
-  spec.version       = Jsonwhois::VERSION
+  spec.name          = "whoxy"
+  spec.version       = Whoxy::VERSION
   spec.authors       = ["Will Spurgin"]
   spec.email         = ["will.spurgin@orm-tech.com"]
 
-  spec.summary       = %q{Basic Faraday driven ruby gem for interacting with the JsonWhois API}
+  spec.summary       = %q{Basic Faraday driven ruby gem for interacting with the Whoxy API}
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 
