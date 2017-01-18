@@ -3,6 +3,8 @@
 Interact with the [Whoxy](https://whoxy.com/) API for retrieving WHOIS
 data on domains.
 
+[![Build Status](https://travis-ci.org/ormtech/whoxy.svg?branch=master)](https://travis-ci.org/ormtech/whoxy)
+
 ## Installation
 
 Add this line to your application's Gemfile:
