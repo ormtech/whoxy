@@ -1,3 +1,5 @@
+require 'uri'
+
 require "whoxy/version"
 require "whoxy/configuration"
 
