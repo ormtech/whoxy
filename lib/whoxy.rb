@@ -40,6 +40,8 @@ module Whoxy
         host = address_host
       end
 
+      fail ArgumentError.new("Could not parse #{uri} for a domain") if host.nil?
+
       # Check for subdomains or combined TLD with ccTLD
       num_separators = host.count "."
       domain = if num_separators > 1

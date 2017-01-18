@@ -54,7 +54,7 @@ whois.lookup("http://google.com")
 # ✓ returns Whoxy API results for 'bar.com'
 whois.lookup("mailto:foo@bar.com")
 
-# ✗ produces ArgumentError because it was neither a URI nor a parsable domain
+# ✓ returns Whoxy API results for 'bar.com'
 whois.lookup("foo@bar.com")
 #=> raises ArgumentError
 ```
